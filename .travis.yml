@@ -39,4 +39,4 @@ script:
     - make test
 
 after_failure:
-    - cat TestCollatz.tmp
+    - cat TestTwoButtons.tmp
