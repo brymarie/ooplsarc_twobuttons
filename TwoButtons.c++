@@ -16,12 +16,13 @@
 #include "TwoButtons.h"
 
 using namespace std;
+typedef pair<int, int> Entry;
 
 // ------------
 // twobuttons_read
 // ------------
 
-Entry twobuttons_read (const std::string& s) {
+std::pair<int, int> twobuttons_read (const std::string& s) {
   std::istringstream sin(s);
   int n = 0;
   int m = 0;
