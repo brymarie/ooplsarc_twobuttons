@@ -12,6 +12,7 @@
 #include <string>   // getline, string
 #include <queue>
 #include <utility>
+#include <vector>
 
 #include "TwoButtons.h"
 
@@ -44,7 +45,9 @@ int twobuttons_eval (int n, int m)
   // If the value is encountered again the result is discarded since it already been queued or processed
   // This can get pretty big - 2*largest value of n (actually 2*n-2?)
   // The "{ }" causes it to be initialized to all false (0)
-  // This better done using the c++ vector class - std::vector<bool> and using the built in functions
+  // This better done using the c++ vector class and using the built in functions like this:
+  // std::vector<bool> visited;
+  // visited.assign(2*10000, false);
   bool visited[20000] = { };
 
   // Bounds check the input values - legals are 1 through 10000 inclusive
@@ -54,12 +57,6 @@ int twobuttons_eval (int n, int m)
   }
   if ((m < 1) || (m > 10000)) {
     return 0;
-  }
-
-  // Clear the visited array for each new set of input values 
-  // How do I do this outside of iterating through it with a loop?
-  for (int index = 0; index < 20000; ++index) {
-    visited[index] = false;
   }
 
   // This is the starting point for the calculation
@@ -78,7 +75,7 @@ int twobuttons_eval (int n, int m)
       return val.second;
     }
 
-    // Red button - double and inc the interation count
+    // Red button - double and increment the iteration count
     int red_val = 2 * val.first;
     int red_count = val.second + 1;
 
@@ -90,6 +87,7 @@ int twobuttons_eval (int n, int m)
       q.push(red_node);
 
       // update the visited array
+      // this doesn't change for the vector version
       visited[red_val] = true;
     //   cout << "queueing red value\n";
     }
@@ -109,6 +107,7 @@ int twobuttons_eval (int n, int m)
       q.push(blue_node);
 
       // update the visited array
+      // this doesn't change for the vector version
       visited[blue_val] = true;
     //   cout << "queueing blue value\n";
     }
