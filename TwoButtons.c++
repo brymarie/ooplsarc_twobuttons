@@ -36,7 +36,7 @@ std::pair<int, int> twobuttons_read (const std::string& s) {
 
 int twobuttons_eval (int n, int m)
 {
-  // Declare a queue called "q" with elements of "Entry", a pair
+  // Declare a queue called "q" with elements of "Entry", which was previously declared as a pair
   std::queue<Entry> q;
 
   // This is our visited array
